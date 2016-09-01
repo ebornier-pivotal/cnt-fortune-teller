@@ -1,5 +1,5 @@
 #!/bin/bash 
 echo "toto"
 cd ..
-./mvnw clean package 
+./mvnw clean package -Dmaven.test.skip=true 
 
