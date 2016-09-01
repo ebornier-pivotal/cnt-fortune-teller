@@ -9,8 +9,6 @@ image_resource:
 
 inputs:
 - name: cloud-native-tour-repo
-outputs:
-- name: build 
 
 run:
   path: cloud-native-tour-repo/ci/create-services.sh 
