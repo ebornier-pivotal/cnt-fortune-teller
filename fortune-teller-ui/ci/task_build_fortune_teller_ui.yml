@@ -11,4 +11,4 @@ inputs:
 #- name: ci
 
 run:
-  path: task_build_fortune_teller_ui.sh
+  path: ./task_build_fortune_teller_ui.sh
