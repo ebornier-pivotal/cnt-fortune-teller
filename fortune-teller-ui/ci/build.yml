@@ -7,17 +7,10 @@ image_resource:
     repository: java
     tag: '8'
 
-params:
-  MAVEN_OPTS:
-  MAVEN_CONFIG:
-
 inputs:
-  - name: app
+- name: cloud-native-tour-repo
 outputs:
-  - name: build
+- name: build 
 
 run:
-  path: sh
-  args: [
-     app/ci/tasks/build.sh
-  ]
+  path: cloud-native-tour-repo/fortune-teller-ui/ci/build.sh 
