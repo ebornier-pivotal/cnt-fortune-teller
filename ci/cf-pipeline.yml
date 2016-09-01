@@ -28,7 +28,7 @@ jobs:
   public: true # cf does not shows auth. logs so it is ok
   plan:
   - get: cloud-native-tour-repo
-    #trigger: true
+    trigger: true
     #passed: [ unit-test ]
   - task: build
     file: cloud-native-tour-repo/ci/create-services.yml
