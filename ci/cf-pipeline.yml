@@ -35,4 +35,4 @@ jobs:
   - put: cf
     params:
       manifest: cloud-native-tour-repo/fortune-teller-ui/manifest.yml
-     # path: target/fortune-teller-ui-0.0.1-SNAPSHOT.jar
+      path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
