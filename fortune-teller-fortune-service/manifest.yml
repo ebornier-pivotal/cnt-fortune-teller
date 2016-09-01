@@ -1,8 +1,7 @@
 ---
 applications:
-- name: cnt-fortune-teller-ui
+- name: cnt-fortune-teller-fortune-service
   hosts:
-    - cnt-fortune-teller-ui
+    - cnt-fortune-teller-fortune-service
   memory: 512MB
   instances: 1
-  path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
