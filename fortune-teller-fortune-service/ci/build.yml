@@ -13,4 +13,4 @@ outputs:
 - name: build 
 
 run:
-  path: cloud-native-tour-repo/fortune-teller-ui/ci/build.sh 
+  path: cloud-native-tour-repo/fortune-teller-fortune-service/ci/build.sh 
