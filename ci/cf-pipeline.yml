@@ -30,8 +30,9 @@ jobs:
   - get: cloud-native-tour-repo
     trigger: true
     #passed: [ unit-test ]
-  - task: build
+  - task: create-services 
     file: cloud-native-tour-repo/ci/create-services.yml
+    cf-api: {{cf-api}}
 
 - name: fortune-teller-fortune-service
   serial: true
