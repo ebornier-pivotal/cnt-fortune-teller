@@ -23,6 +23,16 @@ resources:
 
 jobs:
 
+- name: create netflix services 
+  serial: true
+  public: true # cf does not shows auth. logs so it is ok
+  plan:
+  - get: cloud-native-tour-repo
+    #trigger: true
+    #passed: [ unit-test ]
+  - task: build
+    file: cloud-native-tour-repo/ci/create-services.yml
+
 - name: fortune-teller-fortune-service
   serial: true
   public: true # cf does not shows auth. logs so it is ok
