@@ -13,4 +13,4 @@ outputs:
 - name: build 
 
 run:
-  path: cloud-native-tour-repo/ci/create-service.sh 
+  path: cloud-native-tour-repo/ci/create-services.sh 
