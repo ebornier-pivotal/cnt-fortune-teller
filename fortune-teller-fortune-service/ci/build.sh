@@ -1,6 +1,6 @@
 #!/bin/bash 
 pwd
 cd cloud-native-tour-repo
-cd fortune-teller-ui
+cd fortune-teller-fortune-service
 ./mvnw clean package -Dmaven.test.skip=true 
 mv target/*.jar ../../build/
