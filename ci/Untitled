@@ -1,0 +1,117 @@
+---
+name: a-concourse
+
+director_uuid: cfe3f0f5-995c-4b51-a18d-b84a2a53e354 # <%= `bosh status --uuid` %>
+
+releases:
+  - name: concourse
+    version: latest
+  - name: garden-runc
+    version: latest
+
+instance_groups:
+  - name: web
+    instances: 1
+    resource_pool: concourse
+    networks:
+      - name: concourse
+        static_ips: &web-ips [10.13.14.230]
+    jobs:
+      - release: concourse
+        name: atc
+        properties:
+          postgresql_database: &atc-db atc
+          external_url: https://concourse.cf.semea.piv # (change to the PCF system FQDN you want)
+          development_mode: false
+          basic_auth_username: admin # TODO
+          basic_auth_password: password # TODO
+          publicly_viewable: true
+      - release: concourse
+        name: tsa
+        properties: {}
+  - name: db
+    instances: 1
+    resource_pool: concourse
+    networks: [{name: concourse}]
+    persistent_disk: 10240
+    jobs:
+      - release: concourse
+        name: postgresql
+        properties:
+          databases:
+          - name: *atc-db
+            role: atc
+            password: password
+
+  - name: worker
+    instances: 1
+    resource_pool: concourse
+    networks: [{name: concourse}]
+    jobs:
+      - release: concourse
+        name: groundcrew
+        properties: {}
+      - release: concourse
+        name: baggageclaim
+        properties: {}
+      - release: garden-runc
+        name: garden
+        properties:
+          garden:
+            # cannot enforce quotas in bosh-lite
+            #disk_quota_enabled: false
+            listen_network: tcp
+            listen_address: 0.0.0.0:7777
+            allow_host_access: true
+
+networks:
+  - name: concourse
+    type: manual
+    subnets:
+    - range: 10.13.14.0/24
+      gateway: 10.13.14.1
+      static: *web-ips
+      dns:
+      - 151.92.250.79
+      reserved: # take 192.168.34.1 - 10
+      - 10.13.14.1-10.13.14.229
+      cloud_properties:
+       name : DC_CLoudFoundry-3116
+
+resource_pools:
+  - name: concourse
+    network: concourse
+    stemcell:
+      name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+      version: latest # TODO
+    cloud_properties:
+     ram: 4096
+     disk: 10240
+     cpu: 1
+     datacenters:
+     - clusters:
+       - CAS-HADOOP: {}
+    env:
+     bosh:
+       password: $6$2f6qtRfO$oJOeKk/ZDNb7PWnvMiXDC/HstKiLiZCBHP32KHFVeM9rXgs4W/JJiI4a/eHoddhxJzorLYgi2JUQiOKxZko4M.
+       # c1oudc0w - password generated using mkpasswd -m sha-512
+
+compilation:
+  workers: 1
+  network: concourse
+  reuse_compilation_vms: true
+  cloud_properties:
+   ram: 4096
+   disk: 8192
+   cpu: 1
+   datacenters:
+   - clusters:
+     - CAS-HADOOP: {}
+
+update:
+  canaries: 1
+  max_in_flight: 1
+  max_errors: 1
+  serial: true
+  canary_watch_time: 1000-60000
+  update_watch_time: 1000-60000
