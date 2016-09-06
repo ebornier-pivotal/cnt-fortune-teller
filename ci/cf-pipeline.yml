@@ -32,7 +32,12 @@ jobs:
     #passed: [ unit-test ]
   - task: create-services 
     file: cloud-native-tour-repo/ci/create-services.yml
-    cf-api: {{cf-api}}
+    params:
+      CF_API: {{cf-api}}
+      CF_USERNAME: {{cf-username}}
+      CF_PASSWORD: {{cf-password}}
+      CF_ORGANIZATION: {{cf-organization}}
+      CF_SPACE: {{cf-space}}
 
 - name: fortune-teller-fortune-service
   serial: true
