@@ -23,13 +23,12 @@ resources:
 
 jobs:
 
-- name: create netflix services 
+- name: create-netflix-services 
   serial: true
   public: true # cf does not shows auth. logs so it is ok
   plan:
   - get: cloud-native-tour-repo
     trigger: true
-    #passed: [ unit-test ]
   - task: create-services 
     file: cloud-native-tour-repo/ci/create-services.yml
     params:
@@ -45,7 +44,7 @@ jobs:
   plan:
   - get: cloud-native-tour-repo
     trigger: true
-    #passed: [ unit-test ]
+    passed: [ create-netflix-services ]
   - task: build
     file: cloud-native-tour-repo/fortune-teller-fortune-service/ci/build.yml
   - put: cf
@@ -59,10 +58,26 @@ jobs:
   plan:
   - get: cloud-native-tour-repo
     trigger: true
-    #passed: [ unit-test ]
+    passed: [ create-netflix-services ]
   - task: build
     file: cloud-native-tour-repo/fortune-teller-ui/ci/build.yml
   - put: cf
     params:
       manifest: cloud-native-tour-repo/fortune-teller-ui/manifest.yml
       path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
+
+- name: bind-app-to-netflix-services
+  serial: true
+  public: true # cf does not shows auth. logs so it is ok
+  plan:
+  - get: cloud-native-tour-repo
+    trigger: true
+    passed: [fortune-teller-fortune-service, fortune-teller-ui]
+  - task: bind-services
+    file: cloud-native-tour-repo/ci/bind-services.yml
+    params:
+      CF_API: {{cf-api}}
+      CF_USERNAME: {{cf-username}}
+      CF_PASSWORD: {{cf-password}}
+      CF_ORGANIZATION: {{cf-organization}}
+      CF_SPACE: {{cf-space}}
