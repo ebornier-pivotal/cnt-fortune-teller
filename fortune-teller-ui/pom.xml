@@ -27,8 +27,9 @@
 		<dependency>
 			<groupId>io.pivotal.spring.cloud</groupId>
 			<artifactId>spring-cloud-services-starter-service-registry</artifactId>
-		 <dependency>
-                        <groupId>io.pivotal.spring.cloud</groupId>
+		 </dependency>
+<dependency>                 
+       <groupId>io.pivotal.spring.cloud</groupId>
                         <artifactId>spring-cloud-services-starter-circuit-breaker</artifactId>
                 </dependency>
 		<dependency>
