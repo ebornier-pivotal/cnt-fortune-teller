@@ -57,8 +57,8 @@ jobs:
   public: true # cf does not shows auth. logs so it is ok
   plan:
   - get: cloud-native-tour-repo
-   trigger: true
-   passed: [ create-netflix-services ]
+    trigger: true
+    passed: [ create-netflix-services ]
   - task: build
     file: cloud-native-tour-repo/fortune-teller-ui/ci/build.yml
   - put: cf
