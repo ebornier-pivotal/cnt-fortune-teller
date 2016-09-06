@@ -9,6 +9,10 @@ fortunes:
   ribbon:
     ServerListRefreshInterval: 5000
 
+security:
+  basic:
+    enabled: false
+
 ---
 
 spring:
@@ -26,3 +30,5 @@ hystrix:
 fortunes:
   ribbon:
     listOfServers: localhost:8080
+
+

@@ -14,8 +14,8 @@ public class UiController {
     @Autowired
     FortuneService service;
     
-	@Value("${greeting}")
-	String greeting;
+//	@Value("${greeting}")
+	String greeting = "hello";
 
     @RequestMapping("/greeting")
     public String getGreeting() {
