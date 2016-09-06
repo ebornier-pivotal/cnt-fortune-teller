@@ -17,4 +17,5 @@ spring:
 spring:
   profiles: cloud
   jpa:
-    database: POSTGRESQL
+#    database: POSTGRESQL
+     database: HSQL
