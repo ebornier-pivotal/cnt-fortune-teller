@@ -1,5 +1,4 @@
 #!/bin/bash 
-pwd
 cd cloud-native-tour-repo
 cd fortune-teller-fortune-service
 ./mvnw clean package -Dmaven.test.skip=true 
