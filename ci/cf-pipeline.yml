@@ -1,10 +1,5 @@
 ---
 resources:
-- name: at-night
-  type: time
-  source:
-    start: 4:00 AM +0200
-    stop: 5:00 AM +0200
 
 - name: cloud-native-tour-repo
   type: git
