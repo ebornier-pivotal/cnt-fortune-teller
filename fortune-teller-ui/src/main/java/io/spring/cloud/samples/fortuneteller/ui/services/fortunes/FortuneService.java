@@ -21,10 +21,10 @@ public class FortuneService {
     @Autowired
     RestTemplate restTemplate;
 
-    @HystrixCommand(fallbackMethod = "fallbackFortune")
+//    @HystrixCommand(fallbackMethod = "fallbackFortune")
     public Fortune randomFortune() {
 	System.out.println("-------------call rest template");
-        return restTemplate.getForObject("http://fortune/random", Fortune.class);
+        return restTemplate.getForObject("https://fortune/random", Fortune.class);
     }
 
     private Fortune fallbackFortune(/*Throwable e*/) {
