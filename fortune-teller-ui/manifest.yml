@@ -7,4 +7,5 @@ applications:
   instances: 1
   services:
    - cnt-config-server
+   - cnt-service-registry
   path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
