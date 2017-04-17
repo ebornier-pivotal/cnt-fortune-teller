@@ -26,7 +26,7 @@ public class Fortune {
     }
 
     public String getText() {
-        return "Monday : " + text;
+        return "Sunday : " + text;
     }
 
     public void setText(String text) {
