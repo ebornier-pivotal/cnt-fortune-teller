@@ -1,5 +1,6 @@
 package io.spring.cloud.samples.fortuneteller.ui.services.fortunes;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,10 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Service
 public class FortuneService {
+
+
+	 private static Logger log = org.slf4j.LoggerFactory.getLogger(FortuneService.class);
+
 
 	// In Spring Cloud Brixton release and after, a RestTemplate is not auto injected
 	@Bean
@@ -23,8 +28,8 @@ public class FortuneService {
 
     @HystrixCommand(fallbackMethod = "fallbackFortune")
     public Fortune randomFortune() {
-	System.out.println("-------------call rest template");
-        return restTemplate.getForObject("https://fortune/random", Fortune.class);
+        log.info("/randomFortune called"); 
+	return restTemplate.getForObject("https://fortune/random", Fortune.class);
     }
 
     private Fortune fallbackFortune(/*Throwable e*/) {
