@@ -1,4 +1,6 @@
 
+greeting: Hello Local
+
 #eureka:
  # client:
   #  registryFetchIntervalSeconds: 5
@@ -11,6 +13,9 @@ security:
   basic:
     enabled: false
 
+endpoints:
+  health:
+    sensitive: false
 ---
 
 
