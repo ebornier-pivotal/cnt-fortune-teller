@@ -2,5 +2,12 @@ spring:
   application:
     name: ui
   cloud:
-    config:
-      uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888}
+    services:
+      registrationMethod: route
+
+
+producer:
+  ribbon:
+    ServerListRefreshInterval: 5000
+ribbon:
+  IsSecure: false
