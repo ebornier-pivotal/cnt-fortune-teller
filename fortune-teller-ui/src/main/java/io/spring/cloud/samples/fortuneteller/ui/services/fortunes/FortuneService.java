@@ -29,10 +29,12 @@ public class FortuneService {
     @HystrixCommand(fallbackMethod = "fallbackFortune")
     public Fortune randomFortune() {
         log.info("/randomFortune called"); 
-	return restTemplate.getForObject("https://fortune/random", Fortune.class);
-    }
+//	return restTemplate.getForObject("https://fortune/random", Fortune.class);
+         return restTemplate.getForObject("http://fortune/random", Fortune.class); 
+   }
 
-    private Fortune fallbackFortune(/*Throwable e*/) {
+    private Fortune fallbackFortune(Throwable e) {
+        e.printStackTrace();
         return new Fortune(42L, "Your future is unclear.");
     }
 }
