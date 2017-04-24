@@ -2,7 +2,7 @@
 applications:
 - name: cnt-fortune-teller-ui
   hosts:
-    - cnt-fortune-teller-ui
+    - ci-cnt-fortune-teller-ui
   memory: 1G 
   instances: 1
   services:

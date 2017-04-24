@@ -2,7 +2,7 @@
 applications:
 - name: cnt-fortune-teller-fortune-service
   hosts:
-    - cnt-fortune-teller-fortune-service
+    - ci-cnt-fortune-teller-fortune-service
   services:
    - cnt-config-server
    - cnt-service-registry
