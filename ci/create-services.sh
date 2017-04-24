@@ -38,7 +38,26 @@ then
 	cf create-service -c '{"git": { "uri": "https://github.com/ebornier-pivotal/CloudNativeTour-config.git" }}' p-config-server standard cnt-config-server
 	while [[ $(cf service cnt-config-server | grep Status)  == *"progress"* ]]
 	do
-  	echo "Config server creation in progress";
+  	echo "Circuit breaker creation in progress";
 	done
-	echo "Config server created"
+	echo "Circuit breaker created"
+fi
+
+
+cnt_circuit_breaker_created=false
+
+if  [[ $(cf service cnt-circuit-breaker | grep Status)  == *"create succeeded"* ]];
+then
+  echo "Circuit Breaker already created";
+  cnt_circuit_breaker_created=true
+fi
+
+if  [[ $cnt_circuit_breaker_created  == false ]];
+then
+        cf create-service  p-circuit-breaker-dashboard  standard cnt-circuit-breaker
+        while [[ $(cf service cnt-circuit-breaker | grep Status)  == *"progress"* ]]
+        do
+        echo "Config server creation in progress";
+        done
+        echo "Config server created"
 fi
