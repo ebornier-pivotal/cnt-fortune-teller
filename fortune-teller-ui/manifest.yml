@@ -11,4 +11,4 @@ applications:
    - cnt-circuit-breaker
   path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
   env:
-    SPRING_PROFILES_ACTIVE: cloud,c2c
+    SPRING_PROFILES_ACTIVE: cloud
