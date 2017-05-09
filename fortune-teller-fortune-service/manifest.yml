@@ -8,4 +8,6 @@ applications:
    - cnt-service-registry
    - cnt-circuit-breaker
   memory: 1G 
-  instances: 2 
+  instances: 2
+  env:
+    SPRING_PROFILES_ACTIVE: cloud,c2c

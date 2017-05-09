@@ -1,10 +1,16 @@
 server:
    port: 8081
 
+
+
 spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+  cloud:
+    services:
+      registrationMethod: route 
+
 security:
   basic:
     enabled: false
@@ -22,3 +28,11 @@ spring:
   jpa:
 #    database: POSTGRESQL
      database: HSQL
+
+---
+
+spring:
+  profiles: c2c
+  cloud:
+    services:
+      registrationMethod: direct
