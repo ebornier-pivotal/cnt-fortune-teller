@@ -74,9 +74,9 @@ jobs:
     file: cloud-native-tour-repo/fortune-teller-dotnet/src/AspDotNetCore/Fortune-Teller-UI/ci/build.yml
   - put: cf
     params:
-      current_app_name: cnt-fortune-teller-ui
-      manifest: cloud-native-tour-repo/fortune-teller-ui/manifest.yml
-      path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
+      current_app_name: cnt-fortune-teller-ui-dotnet
+      manifest: cloud-native-tour-repo/fortune-teller-dotnet/src/AspDotNetCore/Fortune-Teller-UI/manifest.yml
+      path: build/publish
 
 - name: bind-app-to-netflix-services
   serial: true
