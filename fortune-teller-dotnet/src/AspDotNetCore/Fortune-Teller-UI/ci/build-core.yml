@@ -12,4 +12,4 @@ outputs:
 - name: build 
 
 run:
-  path: cloud-native-tour-repo/fortune-teller-dotnet/src/AspDotNetCore/Fortune-Teller-UI/ci/build.sh 
+  path: cloud-native-tour-repo/fortune-teller-dotnet/src/AspDotNetCore/Fortune-Teller-UI/ci/build-core.sh 
