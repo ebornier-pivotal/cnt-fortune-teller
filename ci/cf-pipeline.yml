@@ -63,6 +63,21 @@ jobs:
       manifest: cloud-native-tour-repo/fortune-teller-ui/manifest.yml
       path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
 
+- name: fortune-teller-ui-dotnet
+  serial: true
+  public: true # cf does not shows auth. logs so it is ok
+  plan:
+  - get: cloud-native-tour-repo
+    trigger: true
+    passed: [ create-netflix-services ]
+  - task: build
+    file: cloud-native-tour-repo/fortune-teller-dotnet/src/AspDotNetCore/Fortune-Teller-UI/ci/build.yml
+  - put: cf
+    params:
+      current_app_name: cnt-fortune-teller-ui
+      manifest: cloud-native-tour-repo/fortune-teller-ui/manifest.yml
+      path: build/fortune-teller-ui-0.0.1-SNAPSHOT.jar
+
 - name: bind-app-to-netflix-services
   serial: true
   public: true # cf does not shows auth. logs so it is ok
