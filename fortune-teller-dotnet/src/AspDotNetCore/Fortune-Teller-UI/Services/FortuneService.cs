@@ -8,7 +8,7 @@ namespace Fortune_Teller_UI.Services
     {
         DiscoveryHttpClientHandler _handler;
 
-        private const string RANDOM_FORTUNE_URL = "http://fortuneService/api/fortunes/random";
+        private const string RANDOM_FORTUNE_URL = "http://fortune/random";
 
         public FortuneService(IDiscoveryClient client)
         {
