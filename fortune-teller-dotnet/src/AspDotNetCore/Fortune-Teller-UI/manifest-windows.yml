@@ -1,6 +1,7 @@
 ---
 applications:
 - name: fortuneUI
+  host: ci-cnt-fortune-teller-ui-dotnet-fwk
   memory: 512M
   stack: windows2012R2
   health-check-type: none
@@ -8,4 +9,4 @@ applications:
   env:
     ASPNETCORE_ENVIRONMENT: development
   services:
-   - myDiscoveryService
+   - cnt-service-registry 
