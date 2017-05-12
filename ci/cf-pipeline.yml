@@ -71,7 +71,7 @@ jobs:
     trigger: true
     passed: [ create-netflix-services ]
   - task: build
-    file: cloud-native-tour-repo/fortune-teller-dotnet/src/AspDotNetCore/Fortune-Teller-UI/ci/build.yml
+    file: cloud-native-tour-repo/fortune-teller-dotnet/src/AspDotNetCore/Fortune-Teller-UI/ci/build-core.yml
   - put: cf
     params:
       current_app_name: cnt-fortune-teller-ui-dotnet-core
