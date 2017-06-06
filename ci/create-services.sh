@@ -20,6 +20,7 @@ then
 	cf create-service p-service-registry standard cnt-service-registry
 	while [[ $(cf service cnt-service-registry | grep Status)  == *"progress"* ]]
 	do
+	sleep 5
   	echo "Registry creation in progress";
 	done
 	echo "Registry created"
@@ -38,7 +39,8 @@ then
 	cf create-service -c '{"git": { "uri": "https://github.com/ebornier-pivotal/CloudNativeTour-config.git" }}' p-config-server standard cnt-config-server
 	while [[ $(cf service cnt-config-server | grep Status)  == *"progress"* ]]
 	do
-  	echo "Circuit breaker creation in progress";
+	sleep 5
+        echo "Circuit breaker creation in progress";
 	done
 	echo "Circuit breaker created"
 fi
@@ -57,6 +59,7 @@ then
         cf create-service  p-circuit-breaker-dashboard  standard cnt-circuit-breaker
         while [[ $(cf service cnt-circuit-breaker | grep Status)  == *"progress"* ]]
         do
+        sleep 5     
         echo "Config server creation in progress";
         done
         echo "Config server created"
