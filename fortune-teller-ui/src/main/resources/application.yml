@@ -1,10 +1,6 @@
 
 greeting: Hello Local
 
-management:
-  cloudfoundry
-    skip-ssl-validation: true
-
 spring:
   cloud:
     services:
