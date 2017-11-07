@@ -2,9 +2,8 @@ spring:
   application:
     name: ui
   cloud:
-    services:
-      registrationMethod: route
-
+    config:
+      uri: http://localhost:8888
 
 producer:
   ribbon:
