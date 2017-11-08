@@ -36,7 +36,7 @@ fi
 
 if  [[ $cnt_config_server_created  == false ]];
 then
-	cf create-service -c '{"git": { "uri": "https://github.com/ebornier-pivotal/CloudNativeTour-config.git" }}' p-config-server standard cnt-config-server
+	cf create-service -c '{"git": { "uri": "https://github.com/ebornier-pivotal/cnt-fortune-teller-config.git" }}' p-config-server standard cnt-config-server
 	while [[ $(cf service cnt-config-server | grep Status)  == *"progress"* ]]
 	do
 	sleep 5
